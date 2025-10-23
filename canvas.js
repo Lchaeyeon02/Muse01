@@ -1,4 +1,4 @@
-// import config from "./apikey";
+import config from "./apikey";
 
 const endpoint = "https://api.openai.com/v1/chat/completions";
 const dalleEndpoint = "https://api.openai.com/v1/images/generations";
