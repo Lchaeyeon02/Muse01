@@ -1289,11 +1289,7 @@ function renderStoryboard(persona, imageUrls = null, profileImageUrl = null, loc
     $(".addNote").show();
 }
 
-// 이미지 URL이 있을 때 퍼소나 렌더링
-function renderPersonaWithImage(persona, location, imageUrl) {
-    // 스토리보드 이미지 생성 시작
-    generateStoryboardImages(persona, imageUrl, location);
-}
+
 
 // 파이어베이스 이미지 불러오기
 function loadInsightImageFromFirestore(documentId) {
