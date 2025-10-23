@@ -4,6 +4,13 @@ const endpoint = "https://api.openai.com/v1/chat/completions";
 const dalleEndpoint = "https://api.openai.com/v1/images/generations";
 const apiKey = config.API_KEY1; // 🔹 OpenAI API 키 입력
 
+window.selectButton = selectButton;
+window.onSummarizeClick  = onSummarizeClick ;
+window.onPersonaClick   = onPersonaClick  ;
+window.onGuidelineClick    = onGuidelineClick   ;
+window.onRecommendClick     = onRecommendClick    ;
+window.onIdeaClick      = onIdeaClick     ;
+
 let cleanedText = "";
 let isLoading = false;
 let pdfDoc = null;
