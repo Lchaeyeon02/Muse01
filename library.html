@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+        <!-- 1. jQuery 먼저 로드 -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+        <!-- 2. PDF.js 라이브러리 로드 -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        
+        <!-- 3. PDF.js 초기화 -->
+        <script>
+            window.pdfjsLib = window['pdfjs-dist/build/pdf'];
+        </script>
+
+        <!-- 3. firebase 연동 -->
+        <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script>
+
+        <script>
+            const firebaseConfig = {
+                apiKey: "AIzaSyCzKQRiXPNqvKMPdCGFH2W7fZT-8IdxZGE",
+                authDomain: "canvas-img.firebaseapp.com",
+                projectId: "canvas-img",
+                storageBucket: "canvas-img.firebasestorage.app",
+                messagingSenderId: "501179595928",
+                appId: "1:501179595928:web:4867fe21e4b995edd964ed",
+                measurementId: "G-3BRSR85TKQ"
+
+                // 실험전용 데이터베이스01
+                    // apiKey: "AIzaSyByOP3fNhp9EJmoiU1FPyYs7Nmf5uCp3xA",
+                    // authDomain: "test02-ee794.firebaseapp.com",
+                    // projectId: "test02-ee794",
+                    // storageBucket: "test02-ee794.firebasestorage.app",
+                    // messagingSenderId: "294816095230",
+                    // appId: "1:294816095230:web:7b2e582cf32ba305b67eaf",
+                    // measurementId: "G-ZSP0TK6MX3"
+
+                // 실험전용 데이터베이스02
+                
+                };
+        
+            firebase.initializeApp(firebaseConfig);
+            var database = firebase.database();
+        </script>
+
+        <script src="canvas.js"></script>
+</head>
+<body>
+    <header>
+        <a href="home.html"><img class="logo" src="img/logo.png" alt="" width="auto" height="18px"></a>
+        <div class="searchBox">
+            <input class="searchInner" type="text" placeholder="검색어를 입력해주세요"/>
+            <img class="searchIcon" src="img/search.png" alt="" width="16px" height="16px">
+        </div>
+        <div class="headInner">
+            <img class="alarm" src="img/alarm.png" alt="" width="20px" height="20px">
+            <p class="line"></p>
+            <div class="user">
+                <img class="user" src="img/user.png" alt="" width="24px" height="24px">
+                <p>이채연</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="mainPage">
+        <div class="nav-fix">
+            <div class="navTop-fix">
+                <a href="home.html"><img class="home" src="img/home.png" alt="" width="20px" height="20px"></a>
+                <a href="library.html"><img class="library" src="img/library_hover.png" alt="" width="20px" height="20px"></a>
+                <a href="folder.html"><img class="note" src="img/note.png" alt="" width="20px" height="20px"></a>
+            </div>
+            <div class="navBottom-fix">
+                <img class="helper" src="img/helper.png" alt="" width="20px" height="20px">
+                <img class="setting" src="img/setting.png" alt="" width="20px" height="20px">
+            </div>
+        </div>
+
+        <div class="libraryInner">
+            <div class="margin-auto">
+                <section class="paper">
+                    <div class="paperUp">
+                        <img src="img/table.png" alt="" width="20px" height="20px">
+                        <div class="paperSize">
+                            <img src="img/minus.png" alt="" width="20px" height="20px">
+                            <input class="sizeNum" type="text" placeholder="100%"/>
+                            <img src="img/plus.png" alt="" width="20px" height="20px">
+                        </div>
+                        <img src="img/expand.png" alt="" width="20px" height="20px">
+                    </div>
+
+                    <div class="paper-body" id="paper-content">불러오는 중...</div>
+                </section>
+            <!-- ---------------------- -->
+                <section class="answer">
+                    <!-- 기존 question-container 부분을 다음과 같이 교체 -->
+                    <div class="question-container">
+                        <div class="question" id="questionContainer">
+                            <button class="action-btn" onclick="selectButton(this), onSummarizeClick()">디자인 브리프</button>
+                            <button class="action-btn" onclick="selectButton(this), onPersonaClick()">퍼소나 스토리</button>
+                            <button class="action-btn" onclick="selectButton(this), onGuidelineClick()">디자인 가이드라인</button>
+                            <button class="action-btn" onclick="selectButton(this), onRecommendClick()">관련 자료 추천</button>
+                            <button class="action-btn" onclick="selectButton(this), onIdeaClick()">아이디어 생성 도우미</button>
+                        </div>
+                        <img class="quest-left" src="img/button-left.png" alt="">
+                        <img class="quest-right" src="img/button-right.png" alt="">
+                    </div>
+                    
+                    <div class="answerInner">
+                        <h1 class="noticeWord" style="color: #B5BAC4;">“상단 버튼을 클릭하여<br>다양한 인사이트를 확인해보세요!”</h1>
+                    </div>
+
+                    <div class="userProject">
+                        <div class="title">
+                            <h1>진행하는 프로젝트를 이야기해주세요.</h1>
+                            <p>해당 논문을 바탕으로 프로젝트에 도움이 될 아이디어를 제안해줄게요!</p>
+                        </div>
+                        <div class="writeBox">
+                            <input type="text" class="writeInner" placeholder="진행하는 프로젝트를 작성해주세요.">
+                            <button class="projectRight">확인</button>
+                        </div>
+                    </div>
+
+                    <div class="projectIdea"></div>
+
+                    <div class="addNote">
+                        <img src="img/note_hover.png" alt="" width="16px" height="16px">
+                        <p>폴더에 저장하기</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div class="save_folder">
+            <div class="pop">
+                <div class="up">
+                    <h1>프로젝트 폴더</h1>
+                    <img class="folder_close" src="img/close.png" alt="" width="16px" height="16px">
+                </div>
+                <div class="selectBox">
+                    <select name="fruits" class="select">
+                      <option value="file01" selected>모바일 서비스</option>
+                      <option value="file02">키오스크</option>
+                      <option value="file03">노인</option>
+                      <option value="file04">졸업작품</option>
+                    </select>
+                    <span class="icoArrow"><img src="https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png" alt=""></span>
+                  </div>
+                <div class="down">
+                    <button><img src="img/add.png" alt="" width="10px"> 폴더 만들기</button>
+                    <button class="insightSave">저장하기</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="mainInner">
+            <div class="mypaper">
+                <div class="title">
+                    <h1>내 논문</h1>
+                    <div class="filter">
+                        <button>최신순 <img src="img/filter_arrow.png" alt="" width="20px"></button>
+                        <button>북마크 <img src="img/mini_bookmark.png" alt="" width="12px" height="12px"></button>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="mypaper_pdf">
+                        <label for="file">
+                            <div class="mypape-upload">
+                                <img src="img/pdf_upload.png" alt="" width="66px">
+                                <p>원하는 논문 PDF를 <br> 업로드 해주세요!</p>
+                            </div>
+                        </label>
+                        <input type="file" name="file" id="file">
+                    </div>
+
+                    <div class="chip_mypaper">
+                        <div class="up">
+                            <img src="img/표지디자인1.jpg" alt="">
+                            <h2>UX 라이팅을 위한 보이스앤톤 디자인 프로세스 및 가이드북 제안</h2>
+                        </div>
+                        <div class="down">
+                            <p>2025.05.02</p>
+                            <img class="bookmark" src="img/bookmark.png" alt="">
+                        </div>
+                    </div>
+                    <div class="chip_mypaper">
+                        <div class="up">
+                            <img src="img/표지디자인2.jpg" alt="">
+                            <h2>CELLNET: Biomimetic Cell Interface Adaptable to Physical Stimuli and Environment</h2>
+                        </div>
+                        <div class="down">
+                            <p>2025.04.28</p>
+                            <img class="bookmark" src="img/bookmark.png" alt="">
+                        </div>
+                    </div>
+                    <div class="chip_mypaper">
+                        <div class="up">
+                            <img src="img/표지디자인3.jpg" alt="">
+                            <h2>모바일거래시스템의 사용자 중심 디자인 가이드라인 제안: 토스증권을 중심으로</h2>
+                        </div>
+                        <div class="down">
+                            <p>2025.04.16</p>
+                            <img class="bookmark" src="img/bookmark.png" alt="">
+                        </div>
+                    </div>
+                    <div class="chip_mypaper">
+                        <div class="up">
+                            <img src="img/표지디자인4.jpg" alt="">
+                            <h2>사용성 평가를 통한 자원회수 키오스크 GUI 디자인 가이드라인 연구</h2>
+                        </div>
+                        <div class="down">
+                            <p>2025.4.01</p>
+                            <img class="bookmark" src="img/bookmark.png" alt="">
+                        </div>
+                    </div>
+                    <div class="chip_mypaper">
+                        <div class="up">
+                            <img src="img/표지디자인5.jpg" alt="">
+                            <h2>시각장애인을 위한 서비스 관련 연구 동향 조사를 기반으로 서비스 발굴 및 프로토타입 개발: 시각 정보의 촉각 변환 디스플레이</h2>
+                        </div>
+                        <div class="down">
+                            <p>2025.03.02</p>
+                            <img class="bookmark" src="img/bookmark.png" alt="">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+</body>
+</html>

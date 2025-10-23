@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+    <a href="home.html"><img class="logo" src="img/logo.png" alt="" width="auto" height="18px"></a>
+        <div class="searchBox">
+            <input class="searchInner" type="text" placeholder="검색어를 입력해주세요"/>
+            <img class="searchIcon" src="img/search.png" alt="" width="16px" height="16px">
+        </div>
+        <div class="headInner">
+            <img class="alarm" src="img/alarm.png" alt="" width="20px" height="20px">
+            <p class="line"></p>
+            <div class="user">
+                <img class="user" src="img/user.png" alt="" width="24px" height="24px">
+                <p>이채연</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="mainPage">
+        <div class="nav-fix">
+            <div class="navTop-fix">
+                <a href="home.html"><img class="home" src="img/home_hover.png" alt="" width="20px" height="20px"></a>
+                <a href="library.html"><img class="library" src="img/library.png" alt="" width="20px" height="20px"></a>
+                <a href="folder.html"><img class="note" src="img/note.png" alt="" width="20px" height="20px"></a>
+            </div>
+            <div class="navBottom-fix">
+                <img class="helper" src="img/helper.png" alt="" width="20px" height="20px">
+                <img class="setting" src="img/setting.png" alt="" width="20px" height="20px">
+            </div>
+        </div>
+
+        <div class="mainInner">
+            <div class="banner">
+                <h1 class="bannerText">채연 님이 원하는 논문을 업로드해서 <br> 뮤즈와 함께 읽어보세요!</h1>
+                <label for="file">
+                    <p>논문 파일 업로드</p>
+                    <!-- <img src="img/banner-label.png" alt=""> -->
+                    <p>-></p>
+                    <input type="file" name="file" id="file">
+                </button>
+            </div>
+
+            <div class="four_folder">
+                <div class="title">
+                    <h1>프로젝트 폴더</h1>
+                    <a href="folder.html" class="add">
+                        <p>더보기</p>
+                        <img src="img/add_arrow.png" alt="">
+                    </a>
+                </div>
+                <div class="content">
+                    <div class="chip_folder">
+                        <img src="img/purple.png" alt="">
+                        <div>
+                            <h2>모바일 서비스</h2>
+                            <p>총 24개 저장</p>
+                        </div>
+                    </div>
+                    <div class="chip_folder">
+                        <img src="img/pink.png" alt="">
+                        <div>
+                            <h2>키오스크</h2>
+                            <p>총 14개 저장</p>
+                        </div>
+                    </div>
+                    <div class="chip_folder">
+                        <img src="img/yellow.png" alt="">
+                        <div>
+                            <h2>노인</h2>
+                            <p>총 8개 저장</p>
+                        </div>
+                    </div>
+                    <div class="chip_folder">
+                        <img src="img/purple.png" alt="">
+                        <div>
+                            <h2>졸업 작품</h2>
+                            <p>총 22개 저장</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="four_library">
+                <div class="title">
+                    <h1>최근 읽은 논문</h1>
+                    <a href="library.html" class="add">
+                        <p>더보기</p>
+                        <img src="img/add_arrow.png" alt="">
+                    </a>
+                </div>
+                <div class="content">
+                    <div class="chip_library">
+                        <div class="paper_info">
+                            <img src="img/표지디자인1.jpg" alt="">
+                            <div class="paper_info_text">
+                                <h2>UX 라이팅을 위한 보이스앤톤 디자인 프로세스 및 가이드북 제안</h2>
+                                <p>허소연, 박남춘</p>
+                            </div>
+                        </div>
+                        <img class="bookmark" src="img/bookmark.png" alt="">
+                    </div>
+                    <div class="chip_library">
+                        <div class="paper_info">
+                            <img src="img/표지디자인2.jpg" alt="">
+                            <div class="paper_info_text">
+                                <h2>CELLNET: Biomimetic Cell Interface Adaptable to Physical Stimuli and Environment</h2>
+                                <p>Hoon Yoon, Wendy Ju, Farzin Lotfi-Jam, Jenny Sabin</p>
+                            </div>
+                        </div>
+                        <img class="bookmark" src="img/bookmark.png" alt="">
+                    </div>
+                    <div class="chip_library">
+                        <div class="paper_info">
+                            <img src="img/표지디자인3.jpg" alt="">
+                            <div class="paper_info_text">
+                                <h2>모바일거래시스템의 사용자 중심 디자인 가이드라인 제안: 토스증권을 중심으로</h2>
+                                <p>조정민, 이상원</p>
+                            </div>
+                        </div>
+                        <img class="bookmark" src="img/bookmark.png" alt="">
+                    </div>
+                    <div class="chip_library">
+                        <div class="paper_info">
+                            <img src="img/표지디자인4.jpg" alt="">
+                            <div class="paper_info_text">
+                                <h2>사용성 평가를 통한 자원회수 키오스크 GUI 디자인 가이드라인 연구</h2>
+                                <p>김아현, 임지욱, 홍진욱, 이보영</p>
+                            </div>
+                        </div>
+                        <img class="bookmark" src="img/bookmark.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
